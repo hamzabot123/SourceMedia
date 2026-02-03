@@ -60,7 +60,6 @@
         }
 
         /* --- Smoother Scroll Reveal Classes --- */
-        /* Gebruik cubic-bezier voor een meer 'premium' en natuurlijk gevoel */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -98,6 +97,22 @@
         /* Focus styles voor inputs */
         input:focus, textarea:focus, select:focus {
             box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Loading spinner voor formulier */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #8b5cf6;
+            width: 24px;
+            height: 24px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
     </style>
@@ -252,9 +267,8 @@
         </div>
     </section>
 
-    <!-- STATS / ABOUT SECTION - UPDATED -->
+    <!-- STATS / ABOUT SECTION -->
     <section id="over-ons" class="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <!-- Background decoration -->
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         
         <div class="container mx-auto px-6 relative z-10">
@@ -343,7 +357,6 @@
                 </div>
             </div>
             
-            <!-- Mobile button triggers modal -->
             <div class="mt-8 text-center md:hidden reveal">
                 <button onclick="openModal()" class="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700">
                     Bekijk alle cases <i class="fa-solid fa-arrow-right ml-2"></i>
@@ -390,7 +403,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-gray-200">Locatie</h4>
-                                    <span class="text-gray-400">Coming Soon...</span>
+                                    <span class="text-gray-400 italic">Coming Soon...</span>
                                 </div>
                             </div>
                         </div>
@@ -399,8 +412,13 @@
 
                 <!-- Form Area -->
                 <div class="lg:w-7/12 bg-white p-10 md:p-12">
-                    <!-- Dit formulier opent de mail client van de gebruiker -->
-                    <form action="mailto:hamzabouz2004@gmail.com" method="POST" enctype="text/plain" class="space-y-6">
+                    <!-- AANGEPAST FORMULIER MET ID voor JavaScript afhandeling -->
+                    <form id="contactForm" class="space-y-6">
+                        <!-- Verborgen veld voor onderwerp in mail -->
+                        <input type="hidden" name="_subject" value="Nieuwe aanvraag via SourceMedia Website!">
+                        <!-- Anti-spam -->
+                        <input type="hidden" name="_captcha" value="false">
+
                         <div class="grid md:grid-cols-2 gap-6">
                             <!-- Naam -->
                             <div>
@@ -439,11 +457,10 @@
                             <textarea name="Bericht" rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="Beschrijf je project of uitdaging..."></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full py-4 rounded-lg source-gradient text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-300 transform flex items-center justify-center gap-2">
+                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-lg source-gradient text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-300 transform flex items-center justify-center gap-2">
                             <span>Verstuur Bericht</span>
                             <i class="fa-solid fa-paper-plane text-sm"></i>
                         </button>
-                        <p class="text-xs text-gray-400 text-center mt-4">Door te klikken ga je akkoord met het verzenden van deze gegevens via je eigen e-mailprogramma.</p>
                     </form>
                 </div>
             </div>
@@ -527,6 +544,20 @@
         </div>
     </div>
 
+    <!-- SUCCESS MODAL (Nieuw: Pop-up na verzenden) -->
+    <div id="success-modal" class="modal fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm hidden">
+        <div class="modal-content bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-8 text-center">
+            <div class="w-20 h-20 rounded-full bg-green-100 text-green-500 flex items-center justify-center text-4xl mx-auto mb-6">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold font-heading text-slate-900 mb-3">Bericht Verzonden!</h3>
+            <p class="text-gray-600 mb-8">Bedankt voor je interesse in SourceMedia. We hebben je bericht ontvangen en nemen binnen 24 uur contact met je op.</p>
+            <button onclick="closeSuccessModal()" class="w-full py-3 rounded-lg source-gradient text-white font-bold shadow-lg hover:shadow-xl transition-all">
+                Sluiten
+            </button>
+        </div>
+    </div>
+
     <!-- JavaScript voor interactiviteit -->
     <script>
         // --- 1. Mobile Menu Toggle ---
@@ -569,56 +600,92 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50; // Iets eerder triggeren op mobiel
+                var elementVisible = 50; 
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
-        // Luister naar scroll event
         window.addEventListener("scroll", reveal);
-        // Roep een keer aan bij laden om elementen die al in beeld zijn te tonen
         reveal();
 
-        // --- 5. Modal Logic ---
+        // --- 5. Portfolio Modal Logic ---
         const modal = document.getElementById('portfolio-modal');
         
         function openModal() {
             modal.classList.remove('hidden');
-            // Kleine timeout voor de opacity transition
-            setTimeout(() => {
-                modal.classList.add('open');
-            }, 10);
-            document.body.style.overflow = 'hidden'; // Stop scrollen van body
+            setTimeout(() => { modal.classList.add('open'); }, 10);
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
             modal.classList.remove('open');
             setTimeout(() => {
                 modal.classList.add('hidden');
-                document.body.style.overflow = 'auto'; // Sta scrollen weer toe
-            }, 300); // Wacht op transition
+                document.body.style.overflow = 'auto'; 
+            }, 300); 
         }
 
-        // Sluit modal als je buiten de content klikt
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        
-        // Sluit met Escape toets
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('open')) {
-                closeModal();
-            }
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+        // --- 6. FORMULIER AFHANDELING (ZONDER OUTLOOK) ---
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successModal = document.getElementById('success-modal');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Voorkom standaard formulier verzending (dus GEEN refresh, GEEN outlook)
+
+            // Verander knop tekst naar laden
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<div class="loader"></div>';
+            submitBtn.disabled = true;
+
+            // Verzamel data
+            const formData = new FormData(contactForm);
+            
+            // Verstuur via AJAX naar FormSubmit
+            // LET OP: Gebruik hier jouw email adres in de URL
+            fetch("https://formsubmit.co/ajax/hamzabouz2004@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Success!
+                contactForm.reset(); // Maak velden leeg
+                openSuccessModal(); // Toon pop-up
+            })
+            .catch(error => {
+                console.log(error);
+                alert('Er ging iets mis. Probeer het later opnieuw of mail ons direct.');
+            })
+            .finally(() => {
+                // Herstel knop
+                submitBtn.innerHTML = originalBtnContent;
+                submitBtn.disabled = false;
+            });
         });
 
+        // Success Modal Functies
+        function openSuccessModal() {
+            successModal.classList.remove('hidden');
+            setTimeout(() => { successModal.classList.add('open'); }, 10);
+        }
+
+        function closeSuccessModal() {
+            successModal.classList.remove('open');
+            setTimeout(() => {
+                successModal.classList.add('hidden');
+            }, 300);
+        }
     </script>
 </body>
 
 </html>
-
-
-
