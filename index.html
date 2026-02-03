@@ -114,6 +114,11 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Navigatie transitie voor padding */
+        #navbar-container {
+            transition: padding 0.3s ease-in-out;
+        }
 
     </style>
 </head>
@@ -121,30 +126,31 @@
 
     <!-- NAVIGATION -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- AANGEPAST: Padding is nu py-3 (was py-4) en heeft een ID voor JS controle -->
+        <div id="navbar-container" class="container mx-auto px-6 py-3 flex justify-between items-center">
             <!-- Logo Area -->
             <a href="#" class="flex items-center gap-2 group">
                 <!-- Placeholder Logo Icon -->
-                <div class="w-10 h-10 rounded-full source-gradient flex items-center justify-center text-white text-lg shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <div class="w-9 h-9 rounded-full source-gradient flex items-center justify-center text-white text-base shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <i class="fa-solid fa-play"></i>
                 </div>
-                <div class="text-2xl font-bold font-heading tracking-tight">
+                <div class="text-xl font-bold font-heading tracking-tight">
                     <span class="text-slate-900">Source</span><span class="text-purple-600">media</span>
                 </div>
             </a>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
+            <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600 text-sm">
                 <a href="#diensten" class="hover:text-purple-600 transition-colors">Diensten</a>
                 <a href="#over-ons" class="hover:text-purple-600 transition-colors">Over Ons</a>
                 <a href="#portfolio" class="hover:text-purple-600 transition-colors">Portfolio</a>
-                <a href="#contact" class="px-6 py-2.5 rounded-full source-gradient text-white shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5 transition-all duration-300">
+                <a href="#contact" class="px-5 py-2 rounded-full source-gradient text-white shadow-md hover:shadow-purple-500/30 hover:-translate-y-0.5 transition-all duration-300">
                     Start Project
                 </a>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none p-2">
+            <button id="mobile-menu-btn" class="md:hidden text-xl text-gray-800 focus:outline-none p-2">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
@@ -416,6 +422,8 @@
                     <form id="contactForm" class="space-y-6">
                         <!-- Verborgen veld voor onderwerp in mail -->
                         <input type="hidden" name="_subject" value="Nieuwe aanvraag via SourceMedia Website!">
+                        <!-- Verborgen veld voor MOOIE opmaak in mail -->
+                        <input type="hidden" name="_template" value="box">
                         <!-- Anti-spam -->
                         <input type="hidden" name="_captcha" value="false">
 
@@ -568,15 +576,28 @@
             menu.classList.toggle('hidden');
         });
 
-        // --- 2. Sticky Navbar Effect ---
+        // --- 2. Sticky & Shrinking Navbar Effect (AANGEPAST) ---
         const navbar = document.getElementById('navbar');
+        const navbarContainer = document.getElementById('navbar-container');
+        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
+                // Maak navbar sticky en geef achtergrond
                 navbar.classList.add('shadow-md');
                 navbar.classList.add('bg-white/95');
+                
+                // Maak navbar container smaller (padding verkleinen)
+                navbarContainer.classList.remove('py-3');
+                navbarContainer.classList.add('py-2');
             } else {
+                // Reset naar originele staat
                 navbar.classList.remove('shadow-md');
                 navbar.classList.remove('bg-white/90');
+                navbar.classList.remove('bg-white/95');
+                
+                // Herstel padding
+                navbarContainer.classList.add('py-3');
+                navbarContainer.classList.remove('py-2');
             }
         });
 
