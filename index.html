@@ -90,11 +90,12 @@
 
         /* WhatsApp Pulse Animatie */
         @keyframes pulse-custom {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
         .animate-pulse-slow {
-            animation: pulse-custom 3s infinite ease-in-out;
+            animation: pulse-custom 2s infinite;
         }
     </style>
 </head>
@@ -301,44 +302,56 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-2">Recente Projecten</h2>
-                    <p class="text-gray-600">Een selectie van ons beste werk.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-2">Onze Projecten</h2>
+                    <p class="text-gray-600">We zijn momenteel druk bezig met het updaten van ons portfolio.</p>
                 </div>
-                <button onclick="openModal()" class="hidden md:inline-flex items-center text-purple-600 font-semibold hover:text-purple-700 mt-4 md:mt-0 transition-all hover:translate-x-1 group">
-                    Bekijk alle cases <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+                <!-- Button disabled/hidden for now or leading to modal with same info -->
+                <button onclick="openModal()" class="hidden md:inline-flex items-center text-gray-400 font-semibold cursor-not-allowed group">
+                    Meer cases volgen binnenkort...
                 </button>
             </div>
 
+            <!-- "UNDER CONSTRUCTION" / COMING SOON GRID -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="reveal delay-100 group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                        <p class="text-purple-300 text-sm font-semibold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Webdesign & Branding</p>
-                        <h3 class="text-white text-2xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">TechStart Rebrand</h3>
+                <!-- Case 1 -->
+                <div class="reveal delay-100 group relative overflow-hidden rounded-2xl shadow-lg h-72">
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Work in progress" class="w-full h-full object-cover filter blur-sm transform scale-105">
+                    <div class="absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center text-center p-6">
+                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-1">Branding Project</h3>
+                        <p class="text-gray-300 text-sm">Case Study wordt uitgeschreven</p>
                     </div>
                 </div>
 
-                <div class="reveal delay-200 group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                        <p class="text-purple-300 text-sm font-semibold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Social Media Campaign</p>
-                        <h3 class="text-white text-2xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">FitnessPro Launch</h3>
+                <!-- Case 2 -->
+                <div class="reveal delay-200 group relative overflow-hidden rounded-2xl shadow-lg h-72">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Work in progress" class="w-full h-full object-cover filter blur-sm transform scale-105">
+                    <div class="absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center text-center p-6">
+                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-1">Growth Campaign</h3>
+                        <p class="text-gray-300 text-sm">Case Study wordt uitgeschreven</p>
                     </div>
                 </div>
 
-                <div class="reveal delay-300 group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer h-72">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                        <p class="text-purple-300 text-sm font-semibold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">SEO & Strategie</p>
-                        <h3 class="text-white text-2xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Consultancy Growth</h3>
+                <!-- Case 3 -->
+                <div class="reveal delay-300 group relative overflow-hidden rounded-2xl shadow-lg h-72">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Work in progress" class="w-full h-full object-cover filter blur-sm transform scale-105">
+                    <div class="absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center text-center p-6">
+                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mb-1">E-commerce Scale-up</h3>
+                        <p class="text-gray-300 text-sm">Case Study wordt uitgeschreven</p>
                     </div>
                 </div>
             </div>
             
             <div class="mt-8 text-center md:hidden reveal">
-                <button onclick="openModal()" class="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700">
-                    Bekijk alle cases <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
+                <span class="text-gray-400 italic text-sm">Meer cases volgen snel...</span>
             </div>
         </div>
     </section>
@@ -471,12 +484,19 @@
         </div>
     </footer>
 
-    <!-- WHATSAPP FLOATING BUTTON (NIEUW) -->
-    <a href="https://wa.me/31624748321" target="_blank" class="fixed bottom-6 right-6 z-[90] bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg hover:bg-green-600 hover:scale-110 hover:-translate-y-1 transition-all duration-300 animate-pulse-slow">
-        <i class="fa-brands fa-whatsapp"></i>
+    <!-- AANGEPASTE WHATSAPP KNOP -->
+    <a href="https://wa.me/31624748321" target="_blank" class="fixed bottom-6 right-6 z-[90] flex items-center gap-3 group">
+        <!-- Text Bubble (verschijnt bij hover) -->
+        <div class="hidden md:block bg-white px-4 py-2 rounded-xl shadow-lg text-slate-800 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 group-hover:translate-x-0 pointer-events-none whitespace-nowrap">
+            Stuur een appje! 👋
+        </div>
+        <!-- Button met Gradient & Border -->
+        <div class="bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-1 transition-all duration-300 border-4 border-white animate-pulse-slow">
+            <i class="fa-brands fa-whatsapp"></i>
+        </div>
     </a>
 
-    <!-- PORTFOLIO MODAL -->
+    <!-- PORTFOLIO MODAL (Aangepast naar Work in Progress) -->
     <div id="portfolio-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
         <div class="modal-content bg-white w-full max-w-5xl max-h-[90vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
             <div class="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
@@ -486,34 +506,12 @@
                 </button>
             </div>
             <div class="p-6 overflow-y-auto">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer h-64">
-                         <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 1" class="w-full h-full object-cover">
-                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xl">TechStart Rebrand</div>
+                <div class="flex flex-col items-center justify-center py-12 text-center">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-3xl mb-6">
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer h-64">
-                         <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project 2" class="w-full h-full object-cover">
-                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xl">FitnessPro Launch</div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer h-64">
-                         <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Office" class="w-full h-full object-cover">
-                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xl">Corporate Hub</div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer h-64">
-                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data" class="w-full h-full object-cover">
-                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xl">FinTech Data UI</div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer h-64">
-                         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Working" class="w-full h-full object-cover">
-                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xl">Creative Studio</div>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer h-64 bg-gray-100 flex items-center justify-center text-center p-6 border-2 border-dashed border-gray-300">
-                        <div>
-                            <div class="text-4xl text-gray-300 mb-2"><i class="fa-solid fa-plus"></i></div>
-                            <h4 class="text-xl font-bold text-gray-500">Jouw Project Hier?</h4>
-                            <a href="#contact" onclick="closeModal()" class="text-purple-600 font-semibold hover:underline mt-2 inline-block">Start een samenwerking</a>
-                        </div>
-                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Cases worden uitgewerkt!</h3>
+                    <p class="text-gray-600 max-w-md mx-auto">We zijn druk bezig met het documenteren van onze recente successen. Kom binnenkort terug om onze uitgebreide case studies te bekijken.</p>
                 </div>
             </div>
         </div>
@@ -657,4 +655,3 @@
     </script>
 </body>
 </html>
-
