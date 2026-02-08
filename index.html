@@ -10,7 +10,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -18,17 +17,9 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            dark: '#0f172a',
-                            blue: '#3b82f6',
-                            purple: '#8b5cf6',
-                            pink: '#ec4899',
-                        }
+                        brand: { dark: '#0f172a', blue: '#3b82f6', purple: '#8b5cf6', pink: '#ec4899' }
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Poppins', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Poppins', 'sans-serif'] }
                 }
             }
         }
@@ -37,61 +28,26 @@
     <style>
         body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-
         .source-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%); }
-        .source-text-gradient {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Animaties */
+        .source-text-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        /* FIX: Snappy hover effect na animatie */
-        .reveal.revealed {
-            transition: all 0.3s ease-out !important;
-            transition-delay: 0s !important;
-        }
-
-        .delay-100 { transition-delay: 0.1s; }
-        .delay-200 { transition-delay: 0.2s; }
-        .delay-300 { transition-delay: 0.3s; }
-        
-        /* Modal */
+        .reveal.revealed { transition: all 0.3s ease-out !important; transition-delay: 0s !important; }
+        .delay-100 { transition-delay: 0.1s; } .delay-200 { transition-delay: 0.2s; } .delay-300 { transition-delay: 0.3s; }
         .modal { transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; pointer-events: none; }
         .modal.open { opacity: 1; pointer-events: auto; }
         .modal-content { transform: scale(0.90) translateY(20px); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .modal.open .modal-content { transform: scale(1) translateY(0); }
-        
         input:focus, textarea:focus, select:focus { box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1); }
-
-        /* Loader */
-        .loader {
-            border: 3px solid #f3f3f3; border-radius: 50%; border-top: 3px solid #8b5cf6;
-            width: 24px; height: 24px; -webkit-animation: spin 1s linear infinite; animation: spin 1s linear infinite;
-        }
+        .loader { border: 3px solid #f3f3f3; border-radius: 50%; border-top: 3px solid #8b5cf6; width: 24px; height: 24px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        /* Navigatie padding transitie */
         #navbar-container { transition: padding 0.3s ease-in-out; }
-
-        /* Custom Scrollbar voor 'smoother' look */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #f8fafc; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-        /* WhatsApp Pulse Animatie */
-        @keyframes pulse-custom {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        .animate-pulse-slow {
-            animation: pulse-custom 2s infinite;
-        }
+        @keyframes pulse-custom { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        .animate-pulse-slow { animation: pulse-custom 2s infinite; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -106,21 +62,14 @@
                     <span class="text-slate-900">Source</span><span class="text-purple-600">media</span>
                 </div>
             </a>
-
             <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600 text-sm">
                 <a href="#diensten" class="hover:text-purple-600 transition-colors">Diensten</a>
                 <a href="#over-ons" class="hover:text-purple-600 transition-colors">Over Ons</a>
                 <a href="#portfolio" class="hover:text-purple-600 transition-colors">Portfolio</a>
-                <a href="#contact" class="px-5 py-2 rounded-full source-gradient text-white shadow-md hover:shadow-purple-500/30 hover:-translate-y-0.5 transition-all duration-300">
-                    Start Project
-                </a>
+                <a href="#contact" class="px-5 py-2 rounded-full source-gradient text-white shadow-md hover:shadow-purple-500/30 hover:-translate-y-0.5 transition-all duration-300">Start Project</a>
             </div>
-
-            <button id="mobile-menu-btn" class="md:hidden text-xl text-gray-800 focus:outline-none p-2">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            <button id="mobile-menu-btn" class="md:hidden text-xl text-gray-800 focus:outline-none p-2"><i class="fa-solid fa-bars"></i></button>
         </div>
-
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-6 shadow-xl absolute w-full left-0 top-full transform transition-all duration-300 origin-top">
             <div class="flex flex-col space-y-4 font-medium text-lg">
                 <a href="#diensten" class="block text-gray-600 hover:text-purple-600">Diensten</a>
@@ -134,41 +83,21 @@
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-
         <div class="container mx-auto px-6 relative z-10 text-center lg:text-left lg:flex lg:items-center lg:justify-between">
             <div class="lg:w-1/2 mb-12 lg:mb-0">
-                <div class="inline-block px-4 py-2 mb-6 rounded-full bg-purple-50 border border-purple-100 text-purple-600 text-sm font-semibold tracking-wide uppercase reveal">
-                    🚀 Next Level Marketing
-                </div>
-                <h1 class="text-5xl lg:text-7xl font-extrabold font-heading text-slate-900 leading-tight mb-6 reveal delay-100">
-                    Wij laten jouw <br>
-                    <span class="source-text-gradient">Merk Groeien.</span>
-                </h1>
-                <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 reveal delay-200">
-                    SourceMedia combineert slimme marktinzichten met creatief design. Wij helpen ambitieuze bedrijven hun online potentieel te maximaliseren.
-                </p>
+                <div class="inline-block px-4 py-2 mb-6 rounded-full bg-purple-50 border border-purple-100 text-purple-600 text-sm font-semibold tracking-wide uppercase reveal">🚀 Next Level Marketing</div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold font-heading text-slate-900 leading-tight mb-6 reveal delay-100">Wij laten jouw <br><span class="source-text-gradient">Merk Groeien.</span></h1>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 reveal delay-200">SourceMedia combineert slimme marktinzichten met creatief design. Wij helpen ambitieuze bedrijven hun online potentieel te maximaliseren.</p>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 reveal delay-300">
-                    <a href="#contact" class="px-8 py-4 rounded-full source-gradient text-white font-bold shadow-lg hover:shadow-purple-500/40 transform hover:-translate-y-1 transition-all text-center">
-                        Gratis Strategie Gesprek
-                    </a>
-                    <a href="#portfolio" class="px-8 py-4 rounded-full bg-white text-slate-800 border border-gray-200 font-bold hover:bg-gray-50 hover:border-purple-200 transition-all text-center flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-folder-open text-purple-500"></i> Bekijk ons werk
-                    </a>
+                    <a href="#contact" class="px-8 py-4 rounded-full source-gradient text-white font-bold shadow-lg hover:shadow-purple-500/40 transform hover:-translate-y-1 transition-all text-center">Gratis Strategie Gesprek</a>
+                    <a href="#portfolio" class="px-8 py-4 rounded-full bg-white text-slate-800 border border-gray-200 font-bold hover:bg-gray-50 hover:border-purple-200 transition-all text-center flex items-center justify-center gap-2"><i class="fa-solid fa-folder-open text-purple-500"></i> Bekijk ons werk</a>
                 </div>
-                
                 <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-gray-400 grayscale opacity-70 reveal delay-300">
-                   <a href="#" target="_blank" class="hover:text-pink-600 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110">
-                       <i class="fa-brands fa-instagram text-3xl"></i>
-                   </a>
-                   <a href="https://www.tiktok.com/@sourcemedia.nl" target="_blank" class="hover:text-black transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110">
-                       <i class="fa-brands fa-tiktok text-3xl"></i>
-                   </a>
-                   <a href="#" target="_blank" class="hover:text-blue-700 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110">
-                       <i class="fa-brands fa-linkedin text-3xl"></i>
-                   </a>
+                   <a href="#" target="_blank" class="hover:text-pink-600 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-instagram text-3xl"></i></a>
+                   <a href="https://www.tiktok.com/@sourcemedia.nl" target="_blank" class="hover:text-black transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-tiktok text-3xl"></i></a>
+                   <a href="#" target="_blank" class="hover:text-blue-700 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-linkedin text-3xl"></i></a>
                 </div>
             </div>
-
             <div class="lg:w-1/2 relative reveal delay-300">
                 <div class="grid grid-cols-2 gap-4">
                     <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team vergadering" class="rounded-2xl shadow-2xl w-full h-64 object-cover transform translate-y-8 hover:scale-[1.03] transition-transform duration-500">
@@ -176,13 +105,8 @@
                 </div>
                 <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-xl shadow-xl border border-gray-100 hidden md:block hover:scale-105 transition-transform duration-300">
                     <div class="flex items-center gap-4">
-                        <div class="bg-green-100 p-3 rounded-full text-green-600">
-                            <i class="fa-solid fa-arrow-trend-up text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">Gemiddelde ROI</p>
-                            <p class="text-2xl font-bold text-slate-900">+350%</p>
-                        </div>
+                        <div class="bg-green-100 p-3 rounded-full text-green-600"><i class="fa-solid fa-arrow-trend-up text-xl"></i></div>
+                        <div><p class="text-sm text-gray-500">Gemiddelde ROI</p><p class="text-2xl font-bold text-slate-900">+350%</p></div>
                     </div>
                 </div>
             </div>
@@ -196,36 +120,24 @@
                 <div class="h-1.5 w-20 source-gradient mx-auto rounded-full mb-6"></div>
                 <p class="text-gray-600 text-lg">Wij bieden een 360-graden aanpak. Van het eerste idee tot de uiteindelijke conversie.</p>
             </div>
-
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="reveal delay-100 group p-8 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-purple-100 cursor-default">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                        <i class="fa-solid fa-bullhorn"></i>
-                    </div>
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300"><i class="fa-solid fa-bullhorn"></i></div>
                     <h3 class="text-xl font-bold mb-3 text-slate-900">Social Media</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">Wij beheren jouw kanalen en creëren content die interactie uitlokt en volgers omzet in klanten.</p>
                 </div>
-
                 <div class="reveal delay-200 group p-8 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-purple-100 cursor-default">
-                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                        <i class="fa-solid fa-rocket"></i>
-                    </div>
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300"><i class="fa-solid fa-rocket"></i></div>
                     <h3 class="text-xl font-bold mb-3 text-slate-900">Performance Ads</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">Gerichte campagnes op Google, Facebook en Instagram die meetbaar resultaat opleveren.</p>
                 </div>
-
                 <div class="reveal delay-300 group p-8 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-purple-100 cursor-default">
-                    <div class="w-14 h-14 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                        <i class="fa-solid fa-pen-nib"></i>
-                    </div>
+                    <div class="w-14 h-14 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300"><i class="fa-solid fa-pen-nib"></i></div>
                     <h3 class="text-xl font-bold mb-3 text-slate-900">Branding & Design</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">Een visuele identiteit die blijft hangen. Van logo ontwerp tot complete huisstijl en webdesign.</p>
                 </div>
-
                 <div class="reveal delay-300 group p-8 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-purple-100 cursor-default">
-                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
+                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300"><i class="fa-solid fa-chart-line"></i></div>
                     <h3 class="text-xl font-bold mb-3 text-slate-900">SEO & Strategie</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">Lange termijn groei door vindbaarheid in zoekmachines en strategisch advies op maat.</p>
                 </div>
@@ -235,51 +147,33 @@
 
     <section id="over-ons" class="py-24 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2 reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6 leading-tight">
-                        Marketing gaat over <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Vertrouwen & Resultaat.</span>
-                    </h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed text-lg">
-                        Veel bureaus leveren een dienst. Bij SourceMedia leveren we een <b>toekomst</b>. Wij duiken diep in de ziel van jouw bedrijf om te begrijpen wat jou uniek maakt.
-                    </p>
-                    <p class="text-gray-300 mb-8 leading-relaxed text-lg">
-                        Wij geloven niet in "uurtje-factuurtje" en daarna stilte. Wij geloven in proactief meedenken. Jouw groei is onze obsessie. Zie ons niet als extern bureau, maar als een uitbreiding van je eigen team. Transparant, direct en gefocust op echte resultaten.
-                    </p>
-                    
+                    <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6 leading-tight">Marketing gaat over <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Vertrouwen & Resultaat.</span></h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed text-lg">Veel bureaus leveren een dienst. Bij SourceMedia leveren we een <b>toekomst</b>. Wij duiken diep in de ziel van jouw bedrijf om te begrijpen wat jou uniek maakt.</p>
+                    <p class="text-gray-300 mb-8 leading-relaxed text-lg">Wij geloven niet in "uurtje-factuurtje" en daarna stilte. Wij geloven in proactief meedenken. Jouw groei is onze obsessie. Zie ons niet als extern bureau, maar als een uitbreiding van je eigen team. Transparant, direct en gefocust op echte resultaten.</p>
                     <div class="flex flex-wrap gap-4">
                         <span class="px-4 py-2 bg-slate-800 rounded-full text-sm font-semibold text-purple-400 border border-slate-700">🎯 Doelgericht</span>
                         <span class="px-4 py-2 bg-slate-800 rounded-full text-sm font-semibold text-blue-400 border border-slate-700">🧠 Strategisch</span>
                         <span class="px-4 py-2 bg-slate-800 rounded-full text-sm font-semibold text-pink-400 border border-slate-700">🤝 Persoonlijk</span>
                     </div>
                 </div>
-                
                 <div class="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 w-full">
                     <div class="bg-slate-800/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border-t-4 border-blue-500 text-center reveal delay-100 hover:bg-slate-700 transition-all duration-300 hover:-translate-y-2">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
-                            <span class="counter" data-target="5">0</span>+
-                        </div>
+                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2"><span class="counter" data-target="5">0</span>+</div>
                         <div class="text-sm font-medium text-gray-400 uppercase tracking-wide">Tevreden Klanten</div>
                     </div>
                     <div class="bg-slate-800/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border-t-4 border-purple-500 text-center reveal delay-200 hover:bg-slate-700 transition-all duration-300 hover:-translate-y-2">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 break-words">
-                            €<span class="counter" data-target="2000">0</span>+
-                        </div>
+                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 break-words">€<span class="counter" data-target="2000">0</span>+</div>
                         <div class="text-sm font-medium text-gray-400 uppercase tracking-wide">Ad Spend</div>
                     </div>
                     <div class="bg-slate-800/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border-t-4 border-pink-500 text-center reveal delay-300 hover:bg-slate-700 transition-all duration-300 hover:-translate-y-2">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
-                            <span class="counter" data-target="24">0</span>/7
-                        </div>
+                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2"><span class="counter" data-target="24">0</span>/7</div>
                         <div class="text-sm font-medium text-gray-400 uppercase tracking-wide">Monitoring</div>
                     </div>
                     <div class="bg-slate-800/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border-t-4 border-indigo-500 text-center reveal delay-300 hover:bg-slate-700 transition-all duration-300 hover:-translate-y-2">
-                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
-                            <span class="counter" data-target="100">0</span>%
-                        </div>
+                        <div class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2"><span class="counter" data-target="100">0</span>%</div>
                         <div class="text-sm font-medium text-gray-400 uppercase tracking-wide">Toewijding</div>
                     </div>
                 </div>
@@ -290,53 +184,33 @@
     <section id="portfolio" class="py-24 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-2">Onze Projecten</h2>
-                    <p class="text-gray-600">We zijn momenteel druk bezig met het updaten van ons portfolio.</p>
-                </div>
-                <button onclick="openModal()" class="hidden md:inline-flex items-center text-gray-400 font-semibold cursor-not-allowed group">
-                    Meer projecten volgen binnenkort...
-                </button>
+                <div><h2 class="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-2">Onze Projecten</h2><p class="text-gray-600">We zijn momenteel druk bezig met het updaten van ons portfolio.</p></div>
+                <button onclick="openModal()" class="hidden md:inline-flex items-center text-gray-400 font-semibold cursor-not-allowed group">Meer projecten volgen binnenkort...</button>
             </div>
-
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="reveal delay-100 group relative overflow-hidden rounded-2xl shadow-lg h-72">
                     <img src="kapper.jpg" alt="Work in progress" class="w-full h-full object-cover filter blur-sm transform scale-105">
                     <div class="absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center text-center p-6">
-                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4">
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <h3 class="text-white text-xl font-bold mb-1">Kapperszaak</h3>
-                        <p class="text-gray-300 text-sm">Binnenkort online</p>
+                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4"><i class="fa-solid fa-lock"></i></div>
+                        <h3 class="text-white text-xl font-bold mb-1">Kapperszaak</h3><p class="text-gray-300 text-sm">Binnenkort online</p>
                     </div>
                 </div>
-
                 <div class="reveal delay-200 group relative overflow-hidden rounded-2xl shadow-lg h-72">
                     <img src="webshop.jpg" alt="Work in progress" class="w-full h-full object-cover filter blur-sm transform scale-105">
                     <div class="absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center text-center p-6">
-                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4">
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <h3 class="text-white text-xl font-bold mb-1">Webshop</h3>
-                        <p class="text-gray-300 text-sm">Binnenkort online</p>
+                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4"><i class="fa-solid fa-lock"></i></div>
+                        <h3 class="text-white text-xl font-bold mb-1">Webshop</h3><p class="text-gray-300 text-sm">Binnenkort online</p>
                     </div>
                 </div>
-
                 <div class="reveal delay-300 group relative overflow-hidden rounded-2xl shadow-lg h-72">
                     <img src="verhuizen.jpg" alt="Work in progress" class="w-full h-full object-cover filter blur-sm transform scale-105">
                     <div class="absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center text-center p-6">
-                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4">
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <h3 class="text-white text-xl font-bold mb-1">Verhuisbedrijf</h3>
-                        <p class="text-gray-300 text-sm">Binnenkort online</p>
+                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white mb-4"><i class="fa-solid fa-lock"></i></div>
+                        <h3 class="text-white text-xl font-bold mb-1">Verhuisbedrijf</h3><p class="text-gray-300 text-sm">Binnenkort online</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="mt-8 text-center md:hidden reveal">
-                <span class="text-gray-400 italic text-sm">Meer projecten volgen snel...</span>
-            </div>
+            <div class="mt-8 text-center md:hidden reveal"><span class="text-gray-400 italic text-sm">Meer projecten volgen snel...</span></div>
         </div>
     </section>
 
@@ -347,64 +221,34 @@
                     <div class="absolute top-0 left-0 w-full h-full source-gradient opacity-10"></div>
                     <div class="relative z-10">
                         <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">Start je Project</h2>
-                        <p class="text-gray-400 mb-8 text-lg">
-                            Klaar om de volgende stap te zetten? Vertel ons over je ambities en wij nemen binnen 24 uur contact op.
-                        </p>
-                        
+                        <p class="text-gray-400 mb-8 text-lg">Klaar om de volgende stap te zetten? Vertel ons over je ambities en wij nemen binnen 24 uur contact op.</p>
                         <div class="space-y-6">
                             <div class="flex items-start gap-4 group">
-                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shrink-0">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-200">Email ons</h4>
-                                    <span class="text-gray-400">info@sourcemedia.nl</span>
-                                </div>
+                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shrink-0"><i class="fa-solid fa-envelope"></i></div>
+                                <div><h4 class="font-bold text-gray-200">Email ons</h4><span class="text-gray-400">info@sourcemedia.nl</span></div>
                             </div>
                             <div class="flex items-start gap-4 group">
-                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shrink-0">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-200">Bel ons</h4>
-                                    <span class="text-gray-400">+31 (0)6 58974109</span>
-                                </div>
+                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shrink-0"><i class="fa-solid fa-phone"></i></div>
+                                <div><h4 class="font-bold text-gray-200">Bel ons</h4><span class="text-gray-400">+31 (0)6 58974109</span></div>
                             </div>
                             <div class="flex items-start gap-4 group">
-                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shrink-0">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-200">Locatie</h4>
-                                    <span class="text-gray-400 italic">Coming Soon...</span>
-                                </div>
+                                <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                                <div><h4 class="font-bold text-gray-200">Locatie</h4><span class="text-gray-400 italic">Coming Soon...</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="lg:w-7/12 bg-white p-10 md:p-12">
                     <form id="contactForm" class="space-y-6">
                         <input type="hidden" name="_subject" value="Nieuwe aanvraag via SourceMedia Website!">
                         <input type="hidden" name="_template" value="box">
                         <input type="hidden" name="_captcha" value="false">
-
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Naam</label>
-                                <input type="text" name="Naam" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="Jouw naam">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Bedrijfsnaam & Sector</label>
-                                <input type="text" name="Bedrijf" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="Bijv. Media BV, Horeca">
-                            </div>
+                            <div><label class="block text-gray-700 text-sm font-bold mb-2">Naam</label><input type="text" name="Naam" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="Jouw naam"></div>
+                            <div><label class="block text-gray-700 text-sm font-bold mb-2">Bedrijfsnaam & Sector</label><input type="text" name="Bedrijf" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="Bijv. Media BV, Horeca"></div>
                         </div>
-
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700 text-sm font-bold mb-2">Telefoonnummer</label>
-                                <input type="tel" name="Telefoon" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="06 1234 5678">
-                            </div>
+                            <div><label class="block text-gray-700 text-sm font-bold mb-2">Telefoonnummer</label><input type="tel" name="Telefoon" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="06 1234 5678"></div>
                             <div>
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Wat is je doel?</label>
                                 <select name="Doel" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all text-gray-600 cursor-pointer">
@@ -416,16 +260,8 @@
                                 </select>
                             </div>
                         </div>
-                        
-                        <div>
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Vertel ons meer over je wensen</label>
-                            <textarea name="Bericht" rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="Beschrijf je project of uitdaging..."></textarea>
-                        </div>
-                        
-                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-lg source-gradient text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-300 transform flex items-center justify-center gap-2">
-                            <span>Verstuur Bericht</span>
-                            <i class="fa-solid fa-paper-plane text-sm"></i>
-                        </button>
+                        <div><label class="block text-gray-700 text-sm font-bold mb-2">Vertel ons meer over je wensen</label><textarea name="Bericht" rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" placeholder="Beschrijf je project of uitdaging..."></textarea></div>
+                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-lg source-gradient text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-300 transform flex items-center justify-center gap-2"><span>Verstuur Bericht</span><i class="fa-solid fa-paper-plane text-sm"></i></button>
                     </form>
                 </div>
             </div>
@@ -436,55 +272,36 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center mb-10">
                 <div class="flex items-center gap-2 mb-6 md:mb-0">
-                    <div class="w-8 h-8 rounded-full source-gradient flex items-center justify-center text-white text-xs shadow-lg">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
+                    <div class="w-8 h-8 rounded-full source-gradient flex items-center justify-center text-white text-xs shadow-lg"><i class="fa-solid fa-play"></i></div>
                     <span class="text-xl font-bold font-heading">Source<span class="text-purple-400">media</span></span>
                 </div>
-                
                 <div class="flex space-x-6">
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 transition-colors transform hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/20"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors transform hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20"><i class="fa-brands fa-linkedin-in"></i></a>
                     <a href="https://www.tiktok.com/@sourcemedia.nl" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors transform hover:-translate-y-1"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
-            
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <div class="flex flex-col md:flex-row gap-2 md:gap-4 text-center md:text-left">
-                    <p>&copy; 2024 SourceMedia. Alle rechten voorbehouden.</p>
-                    <p class="hidden md:block text-slate-700">|</p>
-                    <p>KVK-nummer: 99633205</p>
-                </div>
-                <div class="flex space-x-4 mt-4 md:mt-0 justify-center md:justify-end">
-                    <a href="#" class="hover:text-white transition-colors">Privacyverklaring</a>
-                    <a href="#" class="hover:text-white transition-colors">Algemene Voorwaarden</a>
-                </div>
+                <div class="flex flex-col md:flex-row gap-2 md:gap-4 text-center md:text-left"><p>&copy; 2024 SourceMedia. Alle rechten voorbehouden.</p><p class="hidden md:block text-slate-700">|</p><p>KVK-nummer: 99633205</p></div>
+                <div class="flex space-x-4 mt-4 md:mt-0 justify-center md:justify-end"><a href="#" class="hover:text-white transition-colors">Privacyverklaring</a><a href="#" class="hover:text-white transition-colors">Algemene Voorwaarden</a></div>
             </div>
         </div>
     </footer>
 
     <a href="https://wa.me/31658974109" target="_blank" class="fixed bottom-6 right-6 z-[90] flex items-center gap-3 group">
-        <div class="hidden md:block bg-white px-4 py-2 rounded-xl shadow-lg text-slate-800 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 group-hover:translate-x-0 pointer-events-none whitespace-nowrap">
-            Stuur een appje! 👋
-        </div>
-        <div class="bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-1 transition-all duration-300 border-4 border-white animate-pulse-slow">
-            <i class="fa-brands fa-whatsapp"></i>
-        </div>
+        <div class="hidden md:block bg-white px-4 py-2 rounded-xl shadow-lg text-slate-800 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 group-hover:translate-x-0 pointer-events-none whitespace-nowrap">Stuur een appje! 👋</div>
+        <div class="bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-1 transition-all duration-300 border-4 border-white animate-pulse-slow"><i class="fa-brands fa-whatsapp"></i></div>
     </a>
 
     <div id="portfolio-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
         <div class="modal-content bg-white w-full max-w-5xl max-h-[90vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
             <div class="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
                 <h3 class="text-2xl font-bold font-heading text-slate-900">Ons Portfolio</h3>
-                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500 flex items-center justify-center transition-colors">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500 flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <div class="p-6 overflow-y-auto">
                 <div class="flex flex-col items-center justify-center py-12 text-center">
-                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-3xl mb-6">
-                        <i class="fa-solid fa-rocket"></i>
-                    </div>
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-3xl mb-6"><i class="fa-solid fa-rocket"></i></div>
                     <h3 class="text-2xl font-bold text-slate-900 mb-2">Cases worden uitgewerkt!</h3>
                     <p class="text-gray-600 max-w-md mx-auto">We zijn druk bezig met het documenteren van onze recente successen. Kom binnenkort terug om onze uitgebreide case studies te bekijken.</p>
                 </div>
@@ -494,62 +311,95 @@
 
     <div id="success-modal" class="modal fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm hidden">
         <div class="modal-content bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-8 text-center">
-            <div class="w-20 h-20 rounded-full bg-green-100 text-green-500 flex items-center justify-center text-4xl mx-auto mb-6">
-                <i class="fa-solid fa-check"></i>
-            </div>
+            <div class="w-20 h-20 rounded-full bg-green-100 text-green-500 flex items-center justify-center text-4xl mx-auto mb-6"><i class="fa-solid fa-check"></i></div>
             <h3 class="text-2xl font-bold font-heading text-slate-900 mb-3">Bericht Verzonden!</h3>
             <p class="text-gray-600 mb-8">Bedankt voor je interesse in SourceMedia. We hebben je bericht ontvangen en nemen binnen 24 uur contact met je op.</p>
-            <button onclick="closeSuccessModal()" class="w-full py-3 rounded-lg source-gradient text-white font-bold shadow-lg hover:shadow-xl transition-all">
-                Sluiten
-            </button>
+            <button onclick="closeSuccessModal()" class="w-full py-3 rounded-lg source-gradient text-white font-bold shadow-lg hover:shadow-xl transition-all">Sluiten</button>
         </div>
     </div>
 
     <script>
         // Mobile Menu
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
+        const btn = document.getElementById('mobile-menu-btn'); const menu = document.getElementById('mobile-menu');
         btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
 
-        // Sticky & Shrinking Navbar (AANGEPAST)
-        const navbar = document.getElementById('navbar');
-        const navbarContainer = document.getElementById('navbar-container');
-        
+        // Sticky Navbar
+        const navbar = document.getElementById('navbar'); const navbarContainer = document.getElementById('navbar-container');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                navbar.classList.add('shadow-md', 'bg-white/95');
-                navbarContainer.classList.remove('py-3');
-                navbarContainer.classList.add('py-2');
-            } else {
-                navbar.classList.remove('shadow-md', 'bg-white/90', 'bg-white/95');
-                navbarContainer.classList.add('py-3');
-                navbarContainer.classList.remove('py-2');
-            }
+            if (window.scrollY > 10) { navbar.classList.add('shadow-md', 'bg-white/95'); navbarContainer.classList.remove('py-3'); navbarContainer.classList.add('py-2'); } 
+            else { navbar.classList.remove('shadow-md', 'bg-white/90', 'bg-white/95'); navbarContainer.classList.add('py-3'); navbarContainer.classList.remove('py-2'); }
         });
 
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                if(!this.hasAttribute('onclick')) {
-                    e.preventDefault();
-                    menu.classList.add('hidden'); 
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                }
+                if(!this.hasAttribute('onclick')) { e.preventDefault(); menu.classList.add('hidden'); document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); }
             });
         });
 
-        // Scroll Reveal & Counter Logic
-        const counters = document.querySelectorAll('.counter');
-        let hasCounted = false;
-        const statsSection = document.querySelector('#over-ons');
-
+        // Scroll Reveal
+        const counters = document.querySelectorAll('.counter'); let hasCounted = false; const statsSection = document.querySelector('#over-ons');
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (let i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50; 
+                var windowHeight = window.innerHeight; var elementTop = reveals[i].getBoundingClientRect().top; var elementVisible = 50; 
                 if (elementTop < windowHeight - elementVisible) { 
-                    // Add active class if not present
-                    if (!reveals[i].classList.contains("active")) {
-                        reveals[i].
+                    if (!reveals[i].classList.contains("active")) { reveals[i].classList.add("active"); setTimeout(() => { reveals[i].classList.add("revealed"); }, 1500); }
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal); reveal();
+
+        // Counter Animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting && !hasCounted) {
+                hasCounted = true;
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target'); const duration = 2000; const increment = target / (duration / 16); let current = 0;
+                    const updateCounter = () => { current += increment; if(current < target) { counter.innerText = Math.ceil(current); requestAnimationFrame(updateCounter); } else { counter.innerText = target; } };
+                    updateCounter();
+                });
+            }
+        }, { threshold: 0.5 });
+        if(statsSection) { counterObserver.observe(statsSection); }
+
+        // Modal Logic
+        const modal = document.getElementById('portfolio-modal');
+        function openModal() { modal.classList.remove('hidden'); setTimeout(() => { modal.classList.add('open'); }, 10); document.body.style.overflow = 'hidden'; }
+        function closeModal() { modal.classList.remove('open'); setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300); }
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+        // Form Handler
+        const contactForm = document.getElementById('contactForm'); const submitBtn = document.getElementById('submitBtn'); const successModal = document.getElementById('success-modal');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); const originalBtnContent = submitBtn.innerHTML; submitBtn.innerHTML = '<div class="loader"></div>'; submitBtn.disabled = true; const formData = new FormData(contactForm);
+            fetch("https://formsubmit.co/ajax/hamzabouz2004@gmail.com", { method: "POST", headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(Object.fromEntries(formData)) })
+            .then(response => response.json()).then(data => { contactForm.reset(); openSuccessModal(); }).catch(error => { console.log(error); alert('Er ging iets mis.'); }).finally(() => { submitBtn.innerHTML = originalBtnContent; submitBtn.disabled = false; });
+        });
+        function openSuccessModal() { successModal.classList.remove('hidden'); setTimeout(() => { successModal.classList.add('open'); }, 10); }
+        function closeSuccessModal() { successModal.classList.remove('open'); setTimeout(() => { successModal.classList.add('hidden'); }, 300); }
+
+        // --- TRACKER LOGIC ---
+        const SUPABASE_URL = "https://tkuotdaoapdvwowbkdsd.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_uLjCLL9ekIvwxybpbDkzSg_IfeAsotc";
+
+        function getVisitorId() {
+            let id = localStorage.getItem('visitor_id');
+            if (!id) { id = Date.now().toString(36) + Math.random().toString(36).substr(2); localStorage.setItem('visitor_id', id); }
+            return id;
+        }
+
+        async function trackVisit() {
+            try {
+                await fetch(`${SUPABASE_URL}/rest/v1/Bezoeken`, {
+                    method: "POST",
+                    headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
+                    body: JSON.stringify({ user_agent: navigator.userAgent, visitor_id: getVisitorId() })
+                });
+            } catch (err) { console.warn("Tracker error:", err); }
+        }
+        if (!window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')) { trackVisit(); }
+    </script>
+</body>
+</html>
