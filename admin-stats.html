@@ -51,7 +51,7 @@
         async function fetchStats() {
             try {
                 // Haal data op en sorteer op nieuwste eerst (created_at.desc)
-                const res = await fetch(`${SUPABASE_URL}/rest/v1/bezoeken?select=*&order=created_at.desc`, {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/Bezoeken?select=*&order=created_at.desc`, {
                     headers: { 
                         "apikey": SUPABASE_KEY, 
                         "Authorization": `Bearer ${SUPABASE_KEY}` 
