@@ -1,28 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
     <title>SourceMedia - Live Stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Poppins', sans-serif; }</style>
 </head>
 <body class="bg-slate-900 text-white p-10">
-    <h1 class="text-3xl font-bold mb-6">Website Statistieken</h1>
-    <div id="stats-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-            <p class="text-gray-400">Totaal Bezoeken</p>
-            <p id="total-visits" class="text-4xl font-bold font-heading">...</p>
-        </div>
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            SourceMedia Statistieken
+        </h1>
+        
+        <div id="stats-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-lg">
+                <p class="text-gray-400 text-sm uppercase tracking-wide font-semibold">Totaal Bezoeken</p>
+                <p id="total-visits" class="text-6xl font-extrabold mt-4 text-white">...</p>
+            </div>
+            
+            <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 shadow-lg">
+                <p class="text-gray-400 text-sm uppercase tracking-wide font-semibold">Laatste Bezoeker</p>
+                <p id="last-visit" class="text-xl font-bold mt-4 text-purple-300">Laden...</p>
+            </div>
         </div>
 
+        <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-xl">
+            <div class="p-6 border-b border-slate-700 bg-slate-800/50">
+                <h3 class="font-bold text-lg">Recent Verkeer</h3>
+            </div>
+            <table class="w-full text-left">
+                <thead class="bg-slate-900/50 text-gray-400 text-sm uppercase">
+                    <tr>
+                        <th class="p-4 font-semibold">Tijdstip</th>
+                        <th class="p-4 font-semibold">Pagina</th>
+                        <th class="p-4 font-semibold hidden md:table-cell">Apparaat</th>
+                    </tr>
+                </thead>
+                <tbody id="visits-table" class="divide-y divide-slate-700 text-sm">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
     <script>
-        // Hier gebruik je dezelfde URL en Key als hierboven
+        // JOUW GEGEVENS STAAN HIER NU INGEVULD:
+        const SUPABASE_URL = "https://tkuotdaoapdvwowbkdsd.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_uLjCLL9ekIvwxybpbDkzSg_IfeAsotc";
+
         async function fetchStats() {
-            const res = await fetch(`${SUPABASE_URL}/rest/v1/bezoeken?select=*`, {
-                headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
-            });
-            const data = await res.json();
-            document.getElementById('total-visits').innerText = data.length;
+            try {
+                // Haal data op en sorteer op nieuwste eerst (created_at.desc)
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/bezoeken?select=*&order=created_at.desc`, {
+                    headers: { 
+                        "apikey": SUPABASE_KEY, 
+                        "Authorization": `Bearer ${SUPABASE_KEY}` 
+                    }
+                });
+                
+                if (!res.ok) throw new Error('Fout bij ophalen data');
+                
+                const data = await res.json();
+                
+                // 1. Vul het totaal in
+                document.getElementById('total-visits').innerText = data.length;
+
+                // 2. Vul laatste bezoeker in (als er data is)
+                if (data.length > 0) {
+                    const lastDate = new Date(data[0].created_at);
+                    document.getElementById('last-visit').innerText = lastDate.toLocaleString('nl-NL', { 
+                        weekday: 'short', hour: '2-digit', minute: '2-digit' 
+                    });
+                } else {
+                    document.getElementById('last-visit').innerText = "Nog geen bezoekers";
+                }
+
+                // 3. Vul de tabel met de laatste 20 bezoekers
+                const tableBody = document.getElementById('visits-table');
+                tableBody.innerHTML = data.slice(0, 20).map(visit => {
+                    const date = new Date(visit.created_at).toLocaleString('nl-NL');
+                    // Simpele check voor mobiel of desktop
+                    const isMobile = visit.user_agent && visit.user_agent.toLowerCase().includes('mobile') ? '📱 Mobiel' : '💻 Desktop';
+                    
+                    return `
+                        <tr class="hover:bg-slate-700/50 transition-colors">
+                            <td class="p-4 text-gray-300 whitespace-nowrap">${date}</td>
+                            <td class="p-4 font-mono text-blue-300">${visit.pagina || '/'}</td>
+                            <td class="p-4 text-gray-400 hidden md:table-cell text-xs">${isMobile}</td>
+                        </tr>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('total-visits').innerText = "Err";
+            }
         }
+        
+        // Ververs de stats elke 30 seconden automatisch
         fetchStats();
+        setInterval(fetchStats, 30000);
     </script>
 </body>
 </html>
