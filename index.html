@@ -30,9 +30,12 @@
         h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
         .source-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%); }
         .source-text-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        
+        /* AANGEPASTE ANIMATIE SNELHEID: 0.3s (was 1s) - 3x sneller */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .reveal.revealed { transition: all 0.3s ease-out !important; transition-delay: 0s !important; }
+        
         .delay-100 { transition-delay: 0.1s; } .delay-200 { transition-delay: 0.2s; } .delay-300 { transition-delay: 0.3s; }
         .modal { transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); opacity: 0; pointer-events: none; }
         .modal.open { opacity: 1; pointer-events: auto; }
@@ -48,6 +51,11 @@
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         @keyframes pulse-custom { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
         .animate-pulse-slow { animation: pulse-custom 2s infinite; }
+        
+        /* Zorg dat juridische tekst leesbaar is */
+        .legal-text h4 { font-weight: 700; margin-top: 1rem; margin-bottom: 0.5rem; color: #1e293b; }
+        .legal-text p { margin-bottom: 0.5rem; font-size: 0.95rem; color: #475569; }
+        .legal-text ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 0.5rem; color: #475569; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -80,25 +88,27 @@
         </div>
     </nav>
 
+    <!-- HERO SECTIE: REVEAL CLASSES VERWIJDERD -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
         <div class="container mx-auto px-6 relative z-10 text-center lg:text-left lg:flex lg:items-center lg:justify-between">
             <div class="lg:w-1/2 mb-12 lg:mb-0">
-                <div class="inline-block px-4 py-2 mb-6 rounded-full bg-purple-50 border border-purple-100 text-purple-600 text-sm font-semibold tracking-wide uppercase reveal">🚀 Next Level Marketing</div>
-                <h1 class="text-5xl lg:text-7xl font-extrabold font-heading text-slate-900 leading-tight mb-6 reveal delay-100">Wij laten jouw <br><span class="source-text-gradient">Merk Groeien.</span></h1>
-                <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 reveal delay-200">SourceMedia combineert slimme marktinzichten met creatief design. Wij helpen ambitieuze bedrijven hun online potentieel te maximaliseren.</p>
-                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 reveal delay-300">
+                <div class="inline-block px-4 py-2 mb-6 rounded-full bg-purple-50 border border-purple-100 text-purple-600 text-sm font-semibold tracking-wide uppercase">🚀 Next Level Marketing</div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold font-heading text-slate-900 leading-tight mb-6">Wij laten jouw <br><span class="source-text-gradient">Merk Groeien.</span></h1>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">SourceMedia combineert slimme marktinzichten met creatief design. Wij helpen ambitieuze bedrijven hun online potentieel te maximaliseren.</p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                     <a href="#contact" class="px-8 py-4 rounded-full source-gradient text-white font-bold shadow-lg hover:shadow-purple-500/40 transform hover:-translate-y-1 transition-all text-center">Gratis Strategie Gesprek</a>
                     <a href="#portfolio" class="px-8 py-4 rounded-full bg-white text-slate-800 border border-gray-200 font-bold hover:bg-gray-50 hover:border-purple-200 transition-all text-center flex items-center justify-center gap-2"><i class="fa-solid fa-folder-open text-purple-500"></i> Bekijk ons werk</a>
                 </div>
-                <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-gray-400 grayscale opacity-70 reveal delay-300">
-                    <a href="#" target="_blank" class="hover:text-pink-600 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-instagram text-3xl"></i></a>
+                <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-gray-400 grayscale opacity-70">
+                    <!-- SOCIALS UPDATE: Instagram link, LinkedIn weg, Facebook erbij -->
+                    <a href="https://www.instagram.com/sourcemedia.nl/" target="_blank" class="hover:text-pink-600 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-instagram text-3xl"></i></a>
                     <a href="https://www.tiktok.com/@sourcemedia.nl" target="_blank" class="hover:text-black transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-tiktok text-3xl"></i></a>
-                    <a href="#" target="_blank" class="hover:text-blue-700 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-linkedin text-3xl"></i></a>
+                    <a href="#" class="hover:text-blue-600 transition-colors hover:grayscale-0 duration-300 cursor-pointer hover:scale-110"><i class="fa-brands fa-facebook text-3xl"></i></a>
                 </div>
             </div>
-            <div class="lg:w-1/2 relative reveal delay-300">
+            <div class="lg:w-1/2 relative">
                 <div class="grid grid-cols-2 gap-4">
                     <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team vergadering" class="rounded-2xl shadow-2xl w-full h-64 object-cover transform translate-y-8 hover:scale-[1.03] transition-transform duration-500">
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Analytics grafieken" class="rounded-2xl shadow-2xl w-full h-64 object-cover hover:scale-[1.03] transition-transform duration-500">
@@ -276,14 +286,24 @@
                     <span class="text-xl font-bold font-heading">Source<span class="text-purple-400">media</span></span>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 transition-colors transform hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/20"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors transform hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/sourcemedia.nl/" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 transition-colors transform hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/20"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition-colors transform hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20"><i class="fa-brands fa-facebook"></i></a>
                     <a href="https://www.tiktok.com/@sourcemedia.nl" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-slate-700 transition-colors transform hover:-translate-y-1"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
+            <!-- FOOTER LAYOUT UPDATE: Links verplaatst naar links (naast KVK) en rechterkant vrijgemaakt -->
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <div class="flex flex-col md:flex-row gap-2 md:gap-4 text-center md:text-left"><p>&copy; 2024 SourceMedia. Alle rechten voorbehouden.</p><p class="hidden md:block text-slate-700">|</p><p>KVK-nummer: 99633205</p></div>
-                <div class="flex space-x-4 mt-4 md:mt-0 justify-center md:justify-end"><a href="#" class="hover:text-white transition-colors">Privacyverklaring</a><a href="#" class="hover:text-white transition-colors">Algemene Voorwaarden</a></div>
+                <div class="flex flex-col md:flex-row gap-2 md:gap-4 text-center md:text-left items-center flex-wrap justify-center md:justify-start">
+                    <p>&copy; 2024 SourceMedia. Alle rechten voorbehouden.</p>
+                    <span class="hidden md:block text-slate-700">|</span>
+                    <p>KVK-nummer: 99633205</p>
+                    <span class="hidden md:block text-slate-700">|</span>
+                    <button onclick="openPrivacyModal()" class="hover:text-white transition-colors cursor-pointer">Privacyverklaring</button>
+                    <span class="text-slate-700 hidden md:inline">-</span>
+                    <button onclick="openTermsModal()" class="hover:text-white transition-colors cursor-pointer">Algemene Voorwaarden</button>
+                </div>
+                <!-- Lege div aan de rechterkant om de ruimte te vullen en de linker content op zijn plek te houden -->
+                <div class="hidden md:block w-32"></div> 
             </div>
         </div>
     </footer>
@@ -293,6 +313,7 @@
         <div class="bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-1 transition-all duration-300 border-4 border-white animate-pulse-slow"><i class="fa-brands fa-whatsapp"></i></div>
     </a>
 
+    <!-- PORTFOLIO MODAL (Bestaand) -->
     <div id="portfolio-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
         <div class="modal-content bg-white w-full max-w-5xl max-h-[90vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
             <div class="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
@@ -305,6 +326,76 @@
                     <h3 class="text-2xl font-bold text-slate-900 mb-2">Cases worden uitgewerkt!</h3>
                     <p class="text-gray-600 max-w-md mx-auto">We zijn druk bezig met het documenteren van onze recente successen. Kom binnenkort terug om onze uitgebreide case studies te bekijken.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIVACY MODAL (NIEUW) -->
+    <div id="privacy-modal" class="modal fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+        <div class="modal-content bg-white w-full max-w-3xl max-h-[80vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
+                <h3 class="text-xl font-bold font-heading text-slate-900">Privacyverklaring</h3>
+                <button onclick="closePrivacyModal()" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500 flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-8 overflow-y-auto legal-text">
+                <p><strong>Ingangsdatum:</strong> 15 oktober 2024</p>
+                <p>SourceMedia hecht veel waarde aan de bescherming van uw persoonsgegevens. In deze Privacyverklaring leggen wij uit hoe wij omgaan met persoonsgegevens.</p>
+
+                <h4>1. Persoonsgegevens die wij verwerken</h4>
+                <p>SourceMedia verwerkt uw persoonsgegevens doordat u gebruik maakt van onze diensten en/of omdat u deze zelf aan ons verstrekt. Hieronder vindt u een overzicht van de persoonsgegevens die wij verwerken:</p>
+                <ul>
+                    <li>Voor- en achternaam</li>
+                    <li>Telefoonnummer</li>
+                    <li>E-mailadres</li>
+                    <li>Bedrijfsnaam</li>
+                    <li>IP-adres en locatiegegevens (voor analytische doeleinden)</li>
+                    <li>Gegevens over uw activiteiten op onze website</li>
+                </ul>
+
+                <h4>2. Met welk doel wij gegevens verwerken</h4>
+                <p>SourceMedia verwerkt uw persoonsgegevens voor de volgende doelen:</p>
+                <ul>
+                    <li>Om u te kunnen bellen of e-mailen indien dit nodig is om onze dienstverlening uit te kunnen voeren.</li>
+                    <li>Om goederen en diensten bij u af te leveren.</li>
+                    <li>SourceMedia analyseert uw gedrag op de website om daarmee de website te verbeteren en het aanbod van producten en diensten af te stemmen op uw voorkeuren.</li>
+                </ul>
+
+                <h4>3. Gegevens inzien, aanpassen of verwijderen</h4>
+                <p>U heeft het recht om uw persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heeft u het recht om uw eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van uw persoonsgegevens door SourceMedia. U kunt een verzoek sturen naar info@sourcemedia.nl.</p>
+
+                <h4>4. Beveiliging</h4>
+                <p>SourceMedia neemt de bescherming van uw gegevens serieus en neemt passende maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMS MODAL (NIEUW) -->
+    <div id="terms-modal" class="modal fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+        <div class="modal-content bg-white w-full max-w-3xl max-h-[80vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
+            <div class="p-6 border-b flex justify-between items-center bg-white sticky top-0 z-10">
+                <h3 class="text-xl font-bold font-heading text-slate-900">Algemene Voorwaarden</h3>
+                <button onclick="closeTermsModal()" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-red-100 text-gray-500 hover:text-red-500 flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-8 overflow-y-auto legal-text">
+                <p><strong>Versie:</strong> 1.0 (Oktober 2024)</p>
+
+                <h4>Artikel 1. Algemeen</h4>
+                <p>Deze voorwaarden zijn van toepassing op iedere aanbieding, offerte en overeenkomst tussen SourceMedia en een Opdrachtgever waarop SourceMedia deze voorwaarden van toepassing heeft verklaard.</p>
+
+                <h4>Artikel 2. Offertes en Aanbiedingen</h4>
+                <p>Alle offertes en aanbiedingen van SourceMedia zijn vrijblijvend, tenzij in de offerte een termijn voor aanvaarding is gesteld. Indien geen aanvaardingstermijn is gesteld, kunnen aan de offerte of aanbieding op generlei wijze rechten worden ontleend.</p>
+
+                <h4>Artikel 3. Uitvoering van de overeenkomst</h4>
+                <p>SourceMedia zal de overeenkomst naar beste inzicht en vermogen en overeenkomstig de eisen van goed vakmanschap uitvoeren. Een en ander op grond van de op dat moment bekende stand der wetenschap.</p>
+
+                <h4>Artikel 4. Betaling</h4>
+                <p>Betaling dient steeds te geschieden binnen 14 dagen na factuurdatum, op een door SourceMedia aan te geven wijze in de valuta waarin is gefactureerd, tenzij schriftelijk anders door SourceMedia aangegeven.</p>
+
+                <h4>Artikel 5. Aansprakelijkheid</h4>
+                <p>SourceMedia is niet aansprakelijk voor schade, van welke aard ook, ontstaan doordat SourceMedia is uitgegaan van door of namens de Opdrachtgever verstrekte onjuiste en/of onvolledige gegevens.</p>
+
+                <h4>Artikel 6. Toepasselijk recht</h4>
+                <p>Op alle rechtsbetrekkingen waarbij SourceMedia partij is, is uitsluitend het Nederlands recht van toepassing.</p>
             </div>
         </div>
     </div>
@@ -337,14 +428,14 @@
             });
         });
 
-        // Scroll Reveal
+        // Scroll Reveal - AANGEPAST: Geen animatie voor hero, 3x sneller
         const counters = document.querySelectorAll('.counter'); let hasCounted = false; const statsSection = document.querySelector('#over-ons');
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (let i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight; var elementTop = reveals[i].getBoundingClientRect().top; var elementVisible = 50; 
                 if (elementTop < windowHeight - elementVisible) { 
-                    if (!reveals[i].classList.contains("active")) { reveals[i].classList.add("active"); setTimeout(() => { reveals[i].classList.add("revealed"); }, 1500); }
+                    if (!reveals[i].classList.contains("active")) { reveals[i].classList.add("active"); setTimeout(() => { reveals[i].classList.add("revealed"); }, 400); } // Tijd aangepast naar 400ms voor cleanup
                 }
             }
         }
@@ -363,12 +454,35 @@
         }, { threshold: 0.5 });
         if(statsSection) { counterObserver.observe(statsSection); }
 
-        // Modal Logic
+        // Modal Logic Portfolio
         const modal = document.getElementById('portfolio-modal');
         function openModal() { modal.classList.remove('hidden'); setTimeout(() => { modal.classList.add('open'); }, 10); document.body.style.overflow = 'hidden'; }
         function closeModal() { modal.classList.remove('open'); setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300); }
-        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+        
+        // Modal Logic Privacy & Terms
+        const privacyModal = document.getElementById('privacy-modal');
+        const termsModal = document.getElementById('terms-modal');
+
+        function openPrivacyModal() { privacyModal.classList.remove('hidden'); setTimeout(() => { privacyModal.classList.add('open'); }, 10); document.body.style.overflow = 'hidden'; }
+        function closePrivacyModal() { privacyModal.classList.remove('open'); setTimeout(() => { privacyModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300); }
+        
+        function openTermsModal() { termsModal.classList.remove('hidden'); setTimeout(() => { termsModal.classList.add('open'); }, 10); document.body.style.overflow = 'hidden'; }
+        function closeTermsModal() { termsModal.classList.remove('open'); setTimeout(() => { termsModal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300); }
+
+        // Close on click outside
+        window.onclick = function(event) {
+            if (event.target == modal) closeModal();
+            if (event.target == privacyModal) closePrivacyModal();
+            if (event.target == termsModal) closeTermsModal();
+        }
+
+        document.addEventListener('keydown', (e) => { 
+            if (e.key === 'Escape') {
+                if(modal.classList.contains('open')) closeModal();
+                if(privacyModal.classList.contains('open')) closePrivacyModal();
+                if(termsModal.classList.contains('open')) closeTermsModal();
+            }
+        });
 
         // Form Handler
         const contactForm = document.getElementById('contactForm'); const submitBtn = document.getElementById('submitBtn'); const successModal = document.getElementById('success-modal');
