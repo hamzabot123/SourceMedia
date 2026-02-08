@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>body { font-family: 'Poppins', sans-serif; }</style>
 </head>
 <body class="bg-slate-900 text-white p-6 md:p-10">
@@ -40,8 +41,8 @@
                     <thead class="bg-slate-900/50 text-gray-400 text-xs uppercase">
                         <tr>
                             <th class="p-4 font-semibold">Tijdstip</th>
+                            <th class="p-4 font-semibold">Locatie</th>
                             <th class="p-4 font-semibold">Visitor ID</th>
-                            <th class="p-4 font-semibold">Apparaat</th>
                         </tr>
                     </thead>
                     <tbody id="visits-table" class="divide-y divide-slate-700 text-sm">
@@ -57,7 +58,6 @@
 
         async function fetchStats() {
             try {
-                // Haal data op en sorteer op nieuwste eerst
                 const res = await fetch(`${SUPABASE_URL}/rest/v1/Bezoeken?select=*&order=created_at.desc`, {
                     headers: { 
                         "apikey": SUPABASE_KEY, 
@@ -66,18 +66,16 @@
                 });
                 
                 if (!res.ok) throw new Error('Fout bij ophalen data');
-                
                 const data = await res.json();
                 
                 // 1. Totaal aantal
                 document.getElementById('total-visits').innerText = data.length;
 
-                // 2. Unieke bezoekers berekenen
-                // We filteren dubbele IDs eruit
+                // 2. Unieke bezoekers
                 const uniqueSet = new Set(data.map(item => item.visitor_id).filter(id => id));
                 document.getElementById('unique-visitors').innerText = uniqueSet.size;
 
-                // 3. Laatste bezoeker tijdstip
+                // 3. Laatste bezoeker
                 if (data.length > 0) {
                     const lastDate = new Date(data[0].created_at);
                     document.getElementById('last-visit').innerText = lastDate.toLocaleString('nl-NL', { 
@@ -92,18 +90,17 @@
                 tableBody.innerHTML = data.slice(0, 20).map(visit => {
                     const date = new Date(visit.created_at).toLocaleString('nl-NL');
                     
-                    // Apparaat check
-                    const isMobile = visit.user_agent && visit.user_agent.toLowerCase().includes('mobile') ? '📱 Mobiel' : '💻 Desktop';
+                    // Stad of onbekend
+                    const location = visit.stad ? `<span class="text-white font-medium"><i class="fa-solid fa-location-dot text-purple-400 mr-2"></i>${visit.stad}</span>` : '<span class="text-gray-500">Onbekend</span>';
                     
-                    // ID inkorten voor nette weergave (laatste 6 tekens)
-                    // Als er geen ID is, toon streepje
-                    const shortID = visit.visitor_id ? `<span class="font-mono text-gray-500">...${visit.visitor_id.slice(-6)}</span>` : '-';
+                    // ID inkorten
+                    const shortID = visit.visitor_id ? `<span class="font-mono text-gray-500">...${visit.visitor_id.slice(-4)}</span>` : '-';
                     
                     return `
                         <tr class="hover:bg-slate-700/50 transition-colors">
                             <td class="p-4 text-gray-300">${date}</td>
-                            <td class="p-4">${shortID}</td>
-                            <td class="p-4 text-gray-400 text-xs">${isMobile}</td>
+                            <td class="p-4">${location}</td>
+                            <td class="p-4 text-gray-500 text-xs">${shortID}</td>
                         </tr>
                     `;
                 }).join('');
@@ -114,7 +111,6 @@
             }
         }
         
-        // Ververs de stats elke 10 seconden
         fetchStats();
         setInterval(fetchStats, 10000);
     </script>
